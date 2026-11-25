@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <title>Signals</title>
+  <meta name="description" content="Live P&L and trade metrics of the NQ auto-trader (read-only).">
+  <meta name="theme-color" content="#0a0c0f">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <meta name="apple-mobile-web-app-title" content="Signals">
+  <meta name="format-detection" content="telephone=no">
+  <meta name="robots" content="noindex, nofollow">
+  <link rel="apple-touch-icon" href="icon-180.png">
+  <link rel="icon" type="image/svg+xml" href="icon.svg">
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <header class="top">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <h1>Signals</h1>
+        <p class="sub" id="acct">NQ auto-trader</p>
+      </div>
+    </div>
+    <button class="status" id="status" type="button" aria-live="polite">
+      <span class="dot"></span><span id="status-text">Loading</span>
+    </button>
+  </header>
+
+  <main id="app" aria-busy="true">
+    <section class="card hero" id="hero"><div class="skeleton tall"></div></section>
+
+    <section class="card today" id="today"></section>
+
+    <section class="grid" id="kpis" aria-label="Performance"></section>
+
+    <section class="card" id="equity-card">
+      <div class="card-head"><h2>Equity</h2><span class="muted" id="equity-range"></span></div>
+      <div id="equity"></div>
+    </section>
+
+    <section class="card" id="strategies-card">
+      <div class="card-head"><h2>By strategy</h2></div>
+      <div id="strategies"></div>
+    </section>
+
+    <section class="card" id="trades-card">
+      <div class="card-head"><h2>Trades</h2><span class="muted" id="trades-count"></span></div>
+      <ol class="trades" id="trades"></ol>
+    </section>
+
+    <details class="card fold" id="bot-card">
+      <summary><h2>Auto-trader</h2><span class="muted" id="bot-summary"></span></summary>
+      <div id="bot"></div>
+    </details>
+
+    <details class="card fold" id="books-card">
+      <summary><h2>Paper strategies</h2><span class="muted">forward test</span></summary>
+      <div id="books"></div>
+    </details>
+
+    <p class="foot">Read-only view of the trading laptop's account data, refreshed every 15 s.<br>
+      <span id="updated"></span></p>
+  </main>
+
+  <div class="error" id="error" hidden></div>
+
+  <script src="config.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
